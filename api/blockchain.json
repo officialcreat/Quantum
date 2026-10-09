@@ -1,0 +1,26 @@
+{
+  "network": "Quantum",
+  "ticker": "QTM",
+  "height": 1,
+  "reward": 50,
+  "transactions": [
+    {
+      "from": "NETWORK",
+      "to": "QTM500004F9",
+      "amount": 350,
+      "type": "Genesis"
+    },
+    {
+      "from": "NETWORK",
+      "to": "QTM500004F9",
+      "amount": 50,
+      "type": "Mining"
+    },
+    {
+      "from": "QTM500004F9",
+      "to": "QTM50010453",
+      "amount": 25,
+      "type": "Transfer"
+    }
+  ]
+}

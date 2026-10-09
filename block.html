@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Quantum Block</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+background:#070818;
+font-family:Arial,Helvetica,sans-serif;
+color:white;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:30px;
+}
+
+.back{
+color:#b347ff;
+text-decoration:none;
+font-weight:bold;
+}
+
+h1{
+margin:20px 0 30px;
+font-size:42px;
+}
+
+h1 span{color:#b347ff;}
+
+.card{
+background:#111827;
+border:1px solid rgba(179,71,255,.25);
+border-radius:18px;
+padding:25px;
+margin-bottom:22px;
+box-shadow:0 0 35px rgba(100,30,255,.08);
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:18px;
+}
+
+.item{
+padding:14px;
+background:#0c1222;
+border-radius:12px;
+}
+
+.label{
+font-size:12px;
+color:#9CA3AF;
+margin-bottom:8px;
+text-transform:uppercase;
+}
+
+.value{
+font-weight:bold;
+font-size:17px;
+word-break:break-all;
+}
+
+.tx{
+padding:18px;
+border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.tx:last-child{border:none}
+
+.hash{color:#d38cff}
+
+.reward{
+color:#ff69ff;
+font-weight:bold;
+}
+
+.success{
+color:#22c55e;
+font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="explorer.html" class="back">← Вернуться в Explorer</a>
+
+<h1>Блок <span id="height"></span></h1>
+
+<div class="card">
+<div class="grid">
+
+<div class="item">
+<div class="label">Hash</div>
+<div class="value" id="hash"></div>
+</div>
+
+<div class="item">
+<div class="label">Previous Hash</div>
+<div class="value" id="prev"></div>
+</div>
+
+<div class="item">
+<div class="label">Miner</div>
+<div class="value" id="miner"></div>
+</div>
+
+<div class="item">
+<div class="label">Reward</div>
+<div class="value reward" id="reward"></div>
+</div>
+
+<div class="item">
+<div class="label">Timestamp</div>
+<div class="value" id="time"></div>
+</div>
+
+<div class="item">
+<div class="label">Consensus</div>
+<div class="value">Proof of Work</div>
+</div>
+
+<div class="item">
+<div class="label">Difficulty</div>
+<div class="value">1</div>
+</div>
+
+<div class="item">
+<div class="label">Nonce</div>
+<div class="value" id="nonce"></div>
+</div>
+
+<div class="item">
+<div class="label">Merkle Root</div>
+<div class="value" id="merkle"></div>
+</div>
+
+<div class="item">
+<div class="label">Block Size</div>
+<div class="value">1.24 KB</div>
+</div>
+
+</div>
+</div>
+
+<div class="card">
+
+<h2 style="margin-bottom:18px;color:#d38cff;">Транзакции</h2>
+
+<div id="transactions"></div>
+
+</div>
+
+</div>
+
+<script>
+
+const blockchain=[
+
+{
+height:2,
+hash:"0000029BCDA881FQ",
+prev:"000001A84FQTM92B1",
+miner:"QTM7CC88AA2",
+reward:"25 QTM",
+time:"2026-09-23 18:27",
+nonce:"847291",
+merkle:"9AF2D881QTM22",
+tx:[
+{
+from:"NETWORK",
+to:"QTM7CC88AA2",
+amount:"25 QTM",
+hash:"TX89A7C22"
+}
+]
+},
+
+{
+height:1,
+hash:"000001A84FQTM92B1",
+prev:"GENESIS350QTM",
+miner:"QTM3A89F1B2",
+reward:"25 QTM",
+time:"2026-09-23 18:14",
+nonce:"521104",
+merkle:"A84FF12QTM91",
+tx:[
+{
+from:"NETWORK",
+to:"QTM3A89F1B2",
+amount:"25 QTM",
+hash:"TX22B771F"
+}
+]
+},
+
+{
+height:0,
+hash:"GENESIS350QTM",
+prev:"0000000000000000",
+miner:"QTM500004F9",
+reward:"350 QTM",
+time:"2026-09-23 18:00",
+nonce:"000001",
+merkle:"GENESISROOT350",
+tx:[
+{
+from:"GENESIS",
+to:"QTM500004F9",
+amount:"350 QTM",
+hash:"GENESIS-TX"
+}
+]
+}
+
+];
+
+const params=new URLSearchParams(location.search);
+const h=parseInt(params.get("height"));
+
+const block=blockchain.find(b=>b.height===h);
+
+document.getElementById("height").innerText=block.height;
+document.getElementById("hash").innerText=block.hash;
+document.getElementById("prev").innerText=block.prev;
+document.getElementById("miner").innerText=block.miner;
+document.getElementById("reward").innerText=block.reward;
+document.getElementById("time").innerText=block.time;
+document.getElementById("nonce").innerText=block.nonce;
+document.getElementById("merkle").innerText=block.merkle;
+
+const tx=document.getElementById("transactions");
+
+block.tx.forEach(t=>{
+
+tx.innerHTML+=`
+<div class="tx">
+
+<div class="label">TX HASH</div>
+<div class="value hash">${t.hash}</div>
+
+<div class="grid">
+
+<div>
+<div class="label">FROM<
+
+
+<div class="value">${t.from}</div>
+</div>
+
+<div>
+<div class="label">TO</div>
+<div class="value">${t.to}</div>
+</div>
+
+<div>
+<div class="label">AMOUNT</div>
+<div class="value reward">${t.amount}</div>
+</div>
+
+<div>
+<div class="label">STATUS</div>
+<div class="success">CONFIRMED</div>
+</div>
+
+</div>
+
+</div>
+`;
+
+});
+
+</script>
+</body>
+</html>

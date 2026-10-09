@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quantum Whitepaper</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    background:#070B14;
+    color:#fff;
+    font-family:Segoe UI,Arial,sans-serif;
+    line-height:1.7;
+}
+:root{
+    --p:#b347ff;
+    --b:#3ea6ff;
+}
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:30px;
+}
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
+}
+.logo{
+    font-size:30px;
+    font-weight:bold;
+}
+.logo span{color:var(--p);}
+.btn{
+    padding:12px 18px;
+    border:1px solid rgba(179,71,255,.3);
+    border-radius:12px;
+    color:white;
+    text-decoration:none;
+}
+.hero{
+    text-align:center;
+    padding:70px 20px;
+    background:linear-gradient(180deg,#111827,#0b1120);
+    border-radius:22px;
+    border:1px solid rgba(179,71,255,.25);
+}
+.hero h1{
+    font-size:58px;
+}
+.hero p{
+    color:#c8b8ff;
+    margin-top:15px;
+    font-size:20px;
+}
+.toc,.section{
+    margin-top:35px;
+    background:#111827;
+    border-radius:18px;
+    padding:28px;
+    border:1px solid rgba(179,71,255,.18);
+}
+.toc h2,.section h2{
+    color:var(--b);
+    margin-bottom:16px;
+}
+.toc a{
+    display:block;
+    color:#ddd;
+    text-decoration:none;
+    margin:8px 0;
+}
+.table-wrap{
+    width:100%;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+}
+
+th, td{
+    padding:14px 16px;
+    text-align:left;
+}
+
+th:last-child,
+td:last-child{
+    text-align:right;
+}
+
+td,th{
+    border:1px solid rgba(255,255,255,.08);
+    padding:12px;
+}
+th{
+    background:#0b1120;
+}
+.diagram{
+    margin:18px 0;
+    background:#0b1120;
+    border-radius:14px;
+    padding:20px;
+    text-align:center;
+    font-family:Consolas,monospace;
+    color:#8be9fd;
+}
+.footer{
+    text-align:center;
+    margin:50px 0 20px;
+    color:#9ca3af;
+}
+footer{
+    margin-top:50px;
+    padding:30px 0;
+    text-align:center;
+    color:#9ca3af;
+}
+
+body{
+    padding-bottom:40px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<div class="logo">QUANTUM <span>QTM</span></div>
+<a href="index.html" class="btn">← Главная</a>
+</header>
+
+<section class="hero">
+<h1>Quantum Whitepaper</h1>
+<p>Технический документ • Версия 1.0 • Mainnet 2026</p>
+</section>
+
+<section class="toc">
+<h2>Содержание</h2>
+
+<a href="#intro">1. Введение</a>
+<a href="#network">2. Архитектура сети</a>
+<a href="#pow">3. Proof of Work</a>
+<a href="#block">4. Структура блока</a>
+<a href="#tokenomics">5. Tokenomics</a>
+<a href="#params">6. Параметры Mainnet</a>
+</section>
+
+<section class="section" id="intro">
+<h2>1. Введение</h2>
+
+<p>
+Quantum — независимый блокчейн первого уровня с собственным Genesis-блоком,
+алгоритмом Proof of Work и открытым исходным кодом.
+Сеть ориентирована на простую архитектуру, высокую проверяемость блоков
+и полностью децентрализованный майнинг.
+</p>
+</section>
+
+<section class="section" id="network">
+<h2>2. Архитектура сети</h2>
+
+<div class="diagram">
+Пользователь
+↓
+Кошелёк
+↓
+Транзакция
+↓
+P2P Узлы
+↓
+Майнеры
+↓
+Новый блок
+↓
+Blockchain
+</div>
+
+<p>
+Каждый узел хранит полную копию цепочки и распространяет новые блоки через
+одноранговую сеть на порту 9333.
+</p>
+</section>
+
+<section class="section" id="pow">
+<h2>3. Proof of Work</h2>
+
+<p>
+Консенсус основан на поиске корректного nonce. Майнер многократно вычисляет
+SHA-256 хеш заголовка блока до получения значения, удовлетворяющего сложности сети.
+</p>
+
+<div class="diagram">
+Hash(Block Header + Nonce)
+↓↓↓
+000000A94F...
+</div>
+
+<p>
+После нахождения корректного хеша блок считается подтверждённым и получает
+вознаграждение 50 QTM.
+</p>
+</section>
+
+<section class="section" id="block">
+<h2>4. Структура блока</h2>
+
+<div class="diagram">
+Hash
+Previous Hash
+Merkle Root
+Timestamp
+Difficulty
+Nonce
+Transactions
+</div>
+
+<p>
+Каждый блок содержит список транзакций, Merkle Root, предыдущий хеш и параметры
+консенсуса, обеспечивая неизменяемость всей цепочки.
+</p>
+</section>
+
+<section class="section" id="tokenomics">
+<h2>5. Tokenomics</h2>
+
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td>Монета</td><td>QTM</td></tr>
+<tr><td>Genesis Reward</td><td>350 QTM</td></tr>
+<tr><td>Block Reward</td><td>50 QTM</td></tr>
+<tr><td>Consensus</td><td>Proof of Work</td></tr>
+<tr><td>P2P Port</td><td>9333</td></tr>
+</table>
+</section>
+
+<section class="section" id="params">
+<h2>6. Mainnet параметры</h2>
+
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td>Network</td><td>Mainnet</td></tr>
+<tr><td>Protocol</td><td>QTM v1</td></tr>
+<tr><td>Port</td><td>9333</td></tr>
+<tr><td>Difficulty</td><td>Dynamic</td></tr>
+<tr><td>Mining</td><td>CPU / GPU</td></tr>
+</table>
+</section>
+
+<div class="footer">
+Quantum QTM • Whitepaper v1.0 • 2026
+</div>
+
+</div>
+
+</body>
+</html>

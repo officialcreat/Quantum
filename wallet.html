@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quantum Wallet</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    background:#070B14;
+    color:#fff;
+    font-family:Segoe UI,Arial,sans-serif;
+}
+:root{
+    --primary:#b347ff;
+    --blue:#3ea6ff;
+    --card:#111827;
+}
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:24px;
+}
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 0;
+}
+.logo{
+    font-size:30px;
+    font-weight:bold;
+}
+.logo span{color:var(--primary)}
+
+a{text-decoration:none;color:white}
+
+.btn{
+    padding:12px 22px;
+    border-radius:14px;
+    border:1px solid rgba(179,71,255,.3);
+    display:inline-block;
+    transition:.25s;
+}
+.btn:hover{
+    background:rgba(179,71,255,.15);
+}
+.primary{
+    background:linear-gradient(135deg,var(--primary),#6a5cff);
+    border:none;
+}
+
+.hero{
+    margin-top:20px;
+    background:linear-gradient(180deg,#0d1324,#0b1120);
+    border:1px solid rgba(179,71,255,.25);
+    border-radius:24px;
+    padding:70px 30px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+.hero:before{
+    content:'';
+    position:absolute;
+    width:420px;
+    height:420px;
+    background:radial-gradient(circle,var(--primary),transparent 70%);
+    filter:blur(40px);
+    opacity:.35;
+    left:50%;
+    transform:translateX(-50%);
+    top:-120px;
+}
+.hero *{position:relative}
+.hero h1{
+    font-size:58px;
+    margin-bottom:12px;
+}
+.hero p{
+    color:#c9b8ff;
+    font-size:20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+    margin:35px 0;
+}
+.card{
+    background:var(--card);
+    border:1px solid rgba(179,71,255,.18);
+    border-radius:18px;
+    padding:24px;
+}
+.card h3{
+    color:var(--blue);
+    margin-bottom:8px;
+}
+.version{
+    font-size:36px;
+    color:var(--primary);
+    font-weight:bold;
+}
+.download{
+    text-align:center;
+    margin:40px 0;
+}
+.download .btn{
+    margin:8px;
+}
+.code{
+    background:#0b1120;
+    border:1px solid rgba(62,166,255,.2);
+    border-radius:14px;
+    padding:16px;
+    color:#8be9fd;
+    font-family:Consolas,monospace;
+    word-break:break-all;
+    margin-top:12px;
+}
+footer{
+    margin-top:60px;
+    border-top:1px solid rgba(179,71,255,.15);
+    padding:20px;
+    text-align:center;
+    color:#9ca3af;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<div class="logo">QUANTUM <span>QTM</span></div>
+
+<a href="index.html" class="btn">← Главная</a>
+</header>
+
+<section class="hero">
+<h1>💎 Quantum Wallet</h1>
+<p>Официальный настольный кошелёк сети Quantum Mainnet</p>
+</section>
+
+<div class="grid">
+
+<div class="card">
+<h3>Версия</h3>
+<div class="version">v1.0.0</div>
+</div>
+
+<div class="card">
+<h3>Сеть</h3>
+<div class="version">MAINNET</div>
+</div>
+
+<div class="card">
+<h3>Консенсус</h3>
+<div class="version">PoW</div>
+</div>
+
+<div class="card">
+<h3>P2P Порт</h3>
+<div class="version">9333</div>
+</div>
+
+</div>
+
+<section class="download">
+<h2 style="margin-bottom:20px;">Скачать кошелёк</h2>
+<a href="downloads/QuantumWallet-1.0.0-linux-x86_64.tar.gz"
+   class="btn"
+   download>
+   🐧 Linux x64
+</a>
+<a href="downloads/QuantumWallet-1.0.0-win64.zip"
+   class="btn" download>
+    📦 ZIP Portable
+</a>
+<a href="downloads/QuantumWalletSetup-1.0.0.exe"
+   class="btn primary" download>
+    🪟 Windows x64
+</a>
+</section>
+
+<section class="card">
+<h2 style="margin-bottom:16px;">SHA256 релиза</h2>
+
+<p>Проверьте хеш после загрузки для подтверждения подлинности файла.</p>
+
+<div class="code">
+8F31C5D2A1E9A57C2B44F83A91C7D62A0B8C15F01D1A4B2F9A6C0E4A12F39B77
+</div>
+</section>
+
+<section class="grid">
+
+<div class="card">
+<h3>Создание адресов</h3>
+<p>Неограниченное количество QTM-адресов с локальным хранением ключей.</p>
+</div>
+
+<div class="card">
+<h3>Отправка QTM</h3>
+<p>Мгновенное создание и подпись транзакций внутри кошелька.</p>
+</div>
+
+<div class="card">
+<h3>Шифрование</h3>
+<p>Защита приватных ключей пользовательским паролем AES.</p>
+</div>
+
+<div class="card">
+<h3>Резервная копия</h3>
+<p>Экспорт wallet.dat и восстановление без потери средств.</p>
+</div>
+
+</section>
+
+<footer>
+  Quantum Wallet • Official Mainnet Client • 2026
+</footer>
+
+
+</div>
+
+</body>
+</html>

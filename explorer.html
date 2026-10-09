@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QUANTUM Explorer</title>
+
+<style>
+
+:root{
+--bg:#050816;
+--panel:#0B1120;
+--panel2:#111827;
+--line:#432874;
+
+--primary:#A855F7;
+--primary2:#7C3AED;
+--glow:#C084FC;
+
+--text:#ffffff;
+--muted:#94A3B8;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:radial-gradient(circle at top,#12052f,#050816 60%);
+color:var(--text);
+background:
+ radial-gradient(circle at 15% 20%, rgba(138,85,247,.18), transparent 35%),
+ radial-gradient(circle at 85% 10%, rgba(59,200,255,.12), transparent 35%),
+ linear-gradient(180deg,#080B16,#0F1325);
+}
+
+header{
+padding:22px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid rgba(168,85,247,.25);
+}
+
+.logo{
+font-size:34px;
+font-weight:bold;
+letter-spacing:3px;
+}
+
+.logo span{
+color:var(--primary);
+}
+.logo svg{
+    filter: drop-shadow(0 0 12px rgba(138,85,247,.55));
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+}
+nav a{
+color:#d1d5db;
+text-decoration:none;
+margin-left:25px;
+}
+
+.hero{
+text-align:center;
+padding:60px 20px 30px;
+background:
+radial-gradient(circle at center,
+rgba(168,85,247,.25),
+transparent 60%);
+}
+.hero::after{
+    content:"";
+    position:absolute;
+    width:420px;
+    height:420px;
+    background:radial-gradient(circle,#8A55F744,transparent 70%);
+    top:-180px;
+    left:50%;
+    transform:translateX(-50%);
+    filter:blur(25px);
+}
+.hero h1{
+font-size:64px;
+z-index:2;
+}
+
+.hero h1 span{
+color:var(--primary);
+}
+
+.hero p{
+margin-top:12px;
+font-size:22px;
+color:var(--muted);
+}
+
+.container{
+max-width:1300px;
+margin:auto;
+padding:30px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-bottom:35px;
+}
+
+.card{
+background:#111827;
+border:1px solid rgba(179,71,255,.25);
+border-radius:18px;
+padding:22px;
+transition:.25s;
+box-shadow:0 0 25px rgba(100,20,255,.08);
+}
+
+.card:hover{
+transform:translateY(-5px);
+border-color:#b347ff;
+box-shadow:0 0 35px rgba(179,71,255,.25);
+}
+.block-card{
+    background:#111827;
+    border:1px solid rgba(179,71,255,.25);
+    border-radius:18px;
+    padding:22px;
+    transition:.25s;
+    cursor:pointer;
+    box-shadow:0 0 25px rgba(100,20,255,.08);
+}
+
+.block-card:hover{
+    transform:translateY(-5px);
+    border-color:#b347ff;
+    box-shadow:0 0 35px rgba(179,71,255,.25);
+}
+
+.block-card h2{
+    font-size:42px;
+    color:#b347ff;
+    margin-bottom:8px;
+}
+
+.block-card p{
+    color:#9CA3AF;
+}
+.card h2{
+font-size:42px;
+color:var(--primary);
+margin-bottom:8px;
+}
+
+.card p{
+color:var(--muted);
+}
+
+.search{
+display:grid;
+grid-template-columns:1fr 160px 200px;
+gap:15px;
+margin-bottom:40px;
+}
+
+.search input{
+background:#0F172A;
+border:1px solid rgba(168,85,247,.25);
+padding:16px;
+border-radius:14px;
+color:white;
+font-size:16px;
+}
+
+button{
+    background:linear-gradient(135deg,#8A55F7,#3BC8FF);
+    color:#fff;
+    border:none;
+    border-radius:14px;
+    padding:14px 22px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 20px rgba(138,85,247,.45);
+}
+
+.refresh{
+background:#1E1B4B;
+border:1px solid #7C3AED;
+}
+
+.sectionTitle{
+font-size:34px;
+margin-bottom:20px;
+}
+
+.block{
+display:grid;
+grid-template-columns:160px 1fr 180px;
+gap:25px;
+align-items:center;
+background:#0B1120;
+border:1px solid rgba(168,85,247,.18);
+padding:22px;
+border-radius:18px;
+margin-bottom:18px;
+}
+
+.icon{
+width:72px;
+height:72px;
+border-radius:50%;
+background:rgba(168,85,247,.15);
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+}
+
+.hash{
+color:#C084FC;
+word-break:break-all;
+margin-top:6px;
+font-size:14px;
+}
+
+.right{
+text-align:right;
+}
+
+.reward{
+font-size:28px;
+font-weight:bold;
+color:var(--primary);
+}
+
+.footer{
+    border-top:1px solid rgba(168,91,250,.25);
+    margin-top:30px;
+    padding-top:18px;
+    display:flex;
+    justify-content:space-between;
+    color:#9CA3AF;
+    font-size:14px;
+}
+
+.status{
+    color:#22c55e;
+    font-weight:600;
+}
+.block-card{
+    cursor:pointer;
+    transition:.25s;
+}
+
+.block-card:hover{
+    transform:translateY(-3px);
+    border-color:#b347ff;
+    box-shadow:0 0 25px rgba(179,71,255,.45);
+}
+.hero{
+position:relative;
+overflow:hidden;
+padding:80px 20px;
+text-align:center;
+border-radius:20px;
+margin-bottom:30px;
+background:linear-gradient(180deg,#0b0d22,#090918);
+}
+
+.hero-bg{
+position:absolute;
+left:-10%;
+right:-10%;
+top:20px;
+height:220px;
+background:
+radial-gradient(circle,#b347ff55 0%,transparent 65%);
+filter:blur(20px);
+animation:pulse 4s infinite;
+}
+
+@keyframes pulse{
+
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
+
+}
+
+.hero h1{
+position:relative;
+font-size:64px;
+letter-spacing:2px;
+}
+
+.hero span{
+color:#b347ff;
+text-shadow:0 0 20px #b347ff;
+}
+
+.hero p{
+position:relative;
+margin-top:12px;
+font-size:22px;
+color:#c8b8ff;
+}
+
+.network-status{
+position:relative;
+margin-top:25px;
+display:inline-flex;
+align-items:center;
+gap:10px;
+padding:10px 18px;
+border:1px solid #22c55e55;
+border-radius:30px;
+background:#0f172a;
+}
+
+.dot{
+width:12px;
+height:12px;
+border-radius:50%;
+background:#22c55e;
+box-shadow:0 0 15px #22c55e;
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+
+<div class="logo">
+  <svg width="34" height="34" viewBox="0 0 100 100" style="vertical-align:middle;margin-right:10px;">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#8A55F7"/>
+        <stop offset="100%" stop-color="#3BC8FF"/>
+      </linearGradient>
+    </defs>
+    <polygon points="50,8 84,28 84,72 50,92 16,72 16,28" fill="url(#g)"/>
+    <polygon points="50,22 70,34 70,58 50,70 30,58 30,34" fill="#0B1020"/>
+    <circle cx="50" cy="46" r="8" fill="url(#g)"/>
+  </svg>
+  QUANTUM <span>QTM</span>
+</div>
+
+<nav>
+<a href="#">Explorer</a>
+<a href="#">Blocks</a>
+<a href="#">Transactions</a>
+<a href="#">Network</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-bg"></div>
+
+<h1>QUANTUM <span>QTM</span></h1>
+
+<p>Official Blockchain Explorer • Mainnet</p>
+
+<div class="network-status">
+<div class="dot"></div>
+<span>NETWORK ONLINE</span>
+</div>
+
+</section>
+
+<div class="container">
+
+<div class="block-card" data-height="2">
+    <h2>⬢ 350</h2>
+    <p>Genesis Reward</p>
+</div>
+
+<div class="block-card" data-height="1">
+    <h2>◎ 9333</h2>
+    <p>P2P Port</p>
+</div>
+
+<div class="block-card" data-height="0">
+    <h2>⚡ PoW</h2>
+    <p>Consensus</p>
+</div>
+
+<div class="block-card" data-height="3">
+    <h2>◆ Mainnet</h2>
+    <p>Network</p>
+</div>
+</div>
+
+<div class="search">
+
+<input id="query" placeholder="Search block, address or hash...">
+
+<button onclick="search()">Search</button>
+
+<button class="refresh" onclick="loadBlockchain()">Refresh</button>
+
+</div>
+
+<h2 class="sectionTitle">Recent Blocks</h2>
+
+<div id="results"></div>
+
+</div>
+
+<footer>
+© 2026 QUANTUM (QTM)
+</footer>
+
+<script>
+
+const blockchain=[
+
+{
+height:2,
+hash:"0000029BCDA881FQ",
+miner:"QTM7CC88AA2",
+reward:"25 QTM",
+time:"2026-09-23 18:27"
+},
+
+{
+height:1,
+hash:"000001A84FQTM92B1",
+miner:"QTM3A89F1B2",
+reward:"25 QTM",
+time:"2026-09-23 18:14"
+},
+
+{
+height:0,
+hash:"GENESIS350QTM",
+miner:"QTM500004F9",
+reward:"350 QTM",
+time:"2026-09-23 18:00"
+}
+
+];
+
+function draw(list){
+
+const results=document.getElementById("results");
+
+results
+
+
+rHTML="";
+
+list.forEach(b=>{
+
+results.innerHTML+=`
+
+<div class="block">
+
+<div>
+
+<div class="icon">⬢</div>
+
+<h3>Block #${b.height}</h3>
+
+</div>
+
+<div>
+
+<div class="hash">${b.hash}</div>
+
+<p>Miner: ${b.miner}</p>
+
+</div>
+
+<div class="right">
+
+<div>${b.time}</div>
+
+<div class="reward">${b.reward}</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+function loadBlockchain(){
+
+draw(blockchain);
+
+}
+
+function search(){
+
+const q=document.getElementById("query").value.toLowerCase();
+
+const f=blockchain.filter(b=>
+
+String(b.height).includes(q) ||
+
+b.hash.toLowerCase().includes(q) ||
+
+b.miner.toLowerCase().includes(q)
+
+);
+
+draw(f);
+
+}
+
+loadBlockchain();
+
+</script>
+<script>
+function openBlock(height){
+    window.location.href = "block.html?height=" + height;
+}
+
+document.querySelectorAll(".block-card").forEach(card=>{
+    card.onclick = () => {
+        const h = card.dataset.height;
+        openBlock(h);
+    };
+});
+</script>
+</body>
+</html>.inne

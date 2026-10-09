@@ -1,39 +1,93 @@
-Quantum (QTM)
+<p align="center">
+  <img src="./docs/logo_dark.jpg" width="220" alt="Quantum Logo">
+</p>
 
-Quantum is an independent blockchain project written in C++.
+<h1 align="center">Quantum (QTM)</h1>
 
-Overview
+<p align="center">
+  Native Proof-of-Work Blockchain • Mainnet v1.0.0
+</p>
 
-Quantum is being developed as a native blockchain with a dedicated wallet, transaction signing and verification, proof-of-work mining, and peer-to-peer communication between nodes.
 
-Current Development
+---
 
-Implemented components include:
+# Overview
 
-* Transaction serialization and transaction identifiers (TXIDs)
-* Cryptographic transaction signing and signature verification
-* Block hashing and proof-of-work mining
-* Initial wallet and balance functionality
-* Peer-to-peer transaction and block propagation
-* Local blockchain persistence
+Quantum is an independent Layer-1 cryptocurrency with its own blockchain, written in C++ and powered by Proof of Work consensus.
 
-Development Status
+The project focuses on decentralization, transparency, and long-term network stability.
 
-Quantum is under active development. Chain validation, persistence and recovery hardening, transaction and balance consistency checks, and additional network infrastructure remain areas of ongoing work.
+## Features
 
-The project should be considered experimental and is not presented as a production-ready mainnet.
+- Native Quantum blockchain
+- Proof of Work (PoW)
+- Desktop Wallet (Windows)
+- Blockchain Explorer
+- Open-source codebase
+- Public documentation
+- MIT License
 
-Technology
+## Network Parameters
 
-* C++
-* CMake
-* OpenSSL
-* Qt 6
+| Parameter | Value |
+|-----------|-------|
+| Project | Quantum |
+| Ticker | **QTM** |
+| Version | **1.0.0** |
+| Consensus | Proof of Work |
+| Genesis Reward | **350 QTM** |
+| Block Reward | **50 QTM** |
 
-Building
+## Repository Structure
 
-Build instructions and dependency requirements will be documented as the codebase and build process are prepared for public contributors.
+```text
+src/            Blockchain source
+release/        Mainnet binaries
+docs/           Documentation
+press/          Press kit
+installer/      Wallet installer
+```
 
-Disclaimer
+## Build
 
-QTM network functionality, supply parameters, security properties, and deployment status should be verified against the source code and current network configuration. This repository does not constitute an investment offer or a guarantee of token value.
+```bash
+cmake -B build
+cmake --build build
+```
+
+## Documentation
+
+- WHITEPAPER.md
+- TOKENOMICS.md
+- ROADMAP.md
+- SECURITY.md
+- BRAND.md
+- FAQ.md
+
+## Official Resources
+
+**Website**
+
+https://officialqtm.github.io
+
+**GitHub**
+
+<https://github.com/officialqtm/quantum-blockchain>
+
+**Explorer**
+
+https://officialqtm.github.io/explorer.html
+
+## Contact
+
+**Official Email**
+
+officialqtm@proton.me
+
+## License
+
+MIT License
+
+---
+
+© 2026 Quantum Foundation
